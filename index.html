@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f6f2">
+<title>Mi Dinero UY</title>
+<style>
+:root{--bg:#f5f6f2;--card:#fff;--ink:#202821;--muted:#707970;--line:#e5e9e1;--green:#32684d;--mint:#e4efe6;--red:#b84d4d;--amber:#a06b24;--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.wrap{max-width:780px;margin:auto;padding:20px 16px 92px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:11px}.logo{width:44px;height:44px;border-radius:15px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:800;font-size:22px}.brand h1{font-size:21px;margin:0;letter-spacing:-.5px}.brand p{margin:1px 0 0;color:var(--muted);font-size:13px}.month{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 10px;max-width:155px;color:var(--ink)}
+.hero{background:var(--green);color:#fff;border-radius:24px;padding:23px;margin-bottom:16px;box-shadow:0 8px 24px #244d3914}.hero .eyebrow{opacity:.8;font-size:13px}.balance{font-size:34px;font-weight:750;letter-spacing:-1px;margin:5px 0 18px}.summary{display:grid;grid-template-columns:1fr 1fr;gap:12px}.sum{background:#ffffff17;border:1px solid #ffffff22;border-radius:14px;padding:12px}.sum span{display:block;font-size:12px;opacity:.85}.sum strong{display:block;font-size:17px;margin-top:4px}
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;background:#e9ece6;border-radius:15px;padding:5px;margin:18px 0}.tab{border:0;background:transparent;border-radius:11px;padding:10px 3px;color:#647067;font-size:12px;font-weight:650}.tab.active{background:#fff;color:var(--green);box-shadow:0 2px 8px #1b32210d}
+.panel{display:none}.panel.active{display:block}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 0 12px}.section-head h2{font-size:18px;margin:0}.btn{border:0;border-radius:12px;background:var(--green);color:#fff;padding:11px 14px;font-weight:650}.btn.secondary{background:var(--mint);color:var(--green)}.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}.btn.danger{background:#f9e8e8;color:var(--red)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;min-width:0}.metric-label{color:var(--muted);font-size:13px}.metric{font-size:23px;font-weight:750;margin-top:5px;letter-spacing:-.5px}.sub{color:var(--muted);font-size:12px;margin-top:5px}.progress{height:7px;background:#edf0eb;border-radius:20px;overflow:hidden;margin-top:12px}.progress i{height:100%;display:block;background:var(--green);border-radius:20px}.list{display:flex;flex-direction:column;gap:9px}.item{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px}.item-left{min-width:0}.item-title{font-weight:650;overflow-wrap:anywhere}.item-meta{color:var(--muted);font-size:12px;margin-top:3px}.amount{font-weight:750;white-space:nowrap}.expense{color:var(--red)}.income{color:var(--green)}.empty{text-align:center;color:var(--muted);padding:26px 12px;background:#fff;border:1px dashed #d8dfd5;border-radius:15px;font-size:14px}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:var(--muted);font-weight:650}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:11px;background:#fff;color:var(--ink);min-width:0}.field textarea{min-height:70px;resize:vertical}.form-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.form-card{margin-bottom:16px}.hidden{display:none!important}.pill{font-size:11px;font-weight:700;background:var(--mint);color:var(--green);padding:4px 8px;border-radius:20px;white-space:nowrap}.pill.red{background:#f9e8e8;color:var(--red)}.small-action{border:0;background:transparent;color:var(--muted);font-size:12px;text-decoration:underline;padding:5px}.bars{display:flex;align-items:end;gap:9px;height:145px;padding:12px 2px 0}.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:end;height:100%;gap:6px;min-width:0}.bar{width:min(28px,75%);border-radius:7px 7px 2px 2px;background:#8bb29a;min-height:3px}.bar-label{font-size:10px;color:var(--muted)}.bar-val{font-size:10px;color:var(--muted);white-space:nowrap}.notice{font-size:12px;color:var(--muted);line-height:1.5;margin:14px 2px}.foot{position:fixed;bottom:0;left:0;right:0;background:#f5f6f2ed;backdrop-filter:blur(12px);padding:10px 16px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:11px}.foot strong{color:var(--green)}
+@media(min-width:650px){.wrap{padding-top:28px}.tabs{gap:8px}.tab{font-size:13px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:380px){.wrap{padding-left:11px;padding-right:11px}.hero{padding:18px}.balance{font-size:29px}.tab{font-size:10px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.metric{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">$</div><div><h1>Mi Dinero UY</h1><p>Tu dinero, más claro.</p></div></div>
+    <input class="month" type="month" id="monthPick" aria-label="Mes seleccionado">
+  </header>
+  <section class="hero">
+    <div class="eyebrow">Balance del mes</div><div class="balance" id="balance">$U 0</div>
+    <div class="summary">
+      <div class="sum"><span>Ingresos</span><strong id="incomeTotal">$U 0</strong></div>
+      <div class="sum"><span>Gastos</span><strong id="expenseTotal">$U 0</strong></div>
+    </div>
+  </section>
+  <nav class="tabs" aria-label="Secciones">
+    <button class="tab active" data-tab="inicio">Inicio</button><button class="tab" data-tab="movimientos">Movimientos</button><button class="tab" data-tab="presupuesto">Presupuesto</button><button class="tab" data-tab="tarjetas">Tarjetas</button><button class="tab" data-tab="ahorro">Ahorro</button>
+  </nav>
+  <main>
+    <section class="panel active" id="inicio">
+      <div class="grid">
+        <div class="card"><div class="metric-label">Disponible del mes</div><div class="metric" id="available">$U 0</div><div class="sub">Ingresos menos gastos</div></div>
+        <div class="card"><div class="metric-label">Gastos registrados</div><div class="metric" id="countMov">0</div><div class="sub">En el mes seleccionado</div></div>
+      </div>
+      <div class="section-head"><h2>Últimos movimientos</h2><button class="btn secondary" id="quickAdd">+ Agregar</button></div>
+      <div class="list" id="recentList"></div>
+      <div class="section-head"><h2>Resumen de gastos</h2></div>
+      <div class="card"><div id="categorySummary"></div></div>
+      <p class="notice">Tus datos se guardan en este navegador. Si borrás los datos del navegador o cambiás de dispositivo, podés perderlos. Exportá un respaldo CSV periódicamente.</p>
+    </section>
+    <section class="panel" id="movimientos">
+      <div class="section-head"><h2>Movimientos</h2><button class="btn" id="showMovementForm">+ Nuevo</button></div>
+      <div class="card form-card hidden" id="movementFormCard">
+        <h3 style="margin:0 0 14px;font-size:16px" id="movementFormTitle">Nuevo movimiento</h3>
+        <form id="movementForm">
+          <div class="formgrid">
+            <div class="field"><label for="mType">Tipo</label><select id="mType"><option value="gasto">Gasto</option><option value="ingreso">Ingreso</option></select></div>
+            <div class="field"><label for="mAmount">Importe ($U)</label><input id="mAmount" type="number" min="1" step="1" required placeholder="Ej. 850"></div>
+            <div class="field"><label for="mDate">Fecha</label><input id="mDate" type="date" required></div>
+            <div class="field"><label for="mCategory">Categoría</label><select id="mCategory"><option>Alimentación</option><option>Vivienda</option><option>Transporte</option><option>Salud</option><option>Compras</option><option>Servicios</option><option>Ocio</option><option>Educación</option><option>Sueldo</option><option>Otros</option></select></div>
+            <div class="field full"><label for="mDescription">Descripción</label><input id="mDescription" maxlength="100" placeholder="Ej. Supermercado, sueldo…"></div>
+            <div class="field"><label for="mMethod">Medio de pago</label><select id="mMethod"><option>Efectivo</option><option>Débito</option><option>Crédito</option><option>Transferencia</option><option>Otro</option></select></div>
+          </div>
+          <div class="form-actions"><button class="btn" type="submit">Guardar movimiento</button><button class="btn ghost" type="button" id="cancelMovement">Cancelar</button></div>
+        </form>
+      </div>
+      <div class="list" id="movementList"></div>
+      <div class="form-actions"><button class="btn secondary" id="exportCsv">Exportar movimientos CSV</button></div>
+    </section>
+    <section class="panel" id="presupuesto">
+      <div class="section-head"><h2>Presupuesto mensual</h2></div>
+      <div class="card form-card">
+        <form id="budgetForm"><div class="formgrid">
+          <div class="field full"><label for="budgetAmount">Límite de gastos del mes ($U)</label><input id="budgetAmount" type="number" min="0" step="1" placeholder="Ej. 30000" required></div>
+        </div><div class="form-actions"><button class="btn" type="submit">Guardar presupuesto</button></div></form>
+      </div>
+      <div class="card"><div class="metric-label">Gasto del mes / presupuesto</div><div class="metric" id="budgetProgressText">$U 0 / $U 0</div><div class="progress"><i id="budgetProgressBar" style="width:0%"></i></div><div class="sub" id="budgetHint">Definí un límite para empezar a controlar tus gastos.</div></div>
+    </section>
+    <section class="panel" id="tarjetas">
+      <div class="section-head"><h2>Tarjetas y cuotas</h2><button class="btn" id="showCardForm">+ Agregar</button></div>
+      <div class="card form-card hidden" id="cardFormCard">
+        <form id="cardForm"><div class="formgrid">
+          <div class="field"><label for="cName">Tarjeta / compra</label><input id="cName" maxlength="60" required placeholder="Ej. Visa, heladera"></div>
+          <div class="field"><label for="cTotal">Importe total ($U)</label><input id="cTotal" type="number" min="1" step="1" required></div>
+          <div class="field"><label for="cInstallments">Cantidad de cuotas</label><input id="cInstallments" type="number" min="1" step="1" value="1" required></div>
+          <div class="field"><label for="cPaid">Cuotas pagadas</label><input id="cPaid" type="number" min="0" step="1" value="0" required></div>
+          <div class="field full"><label for="cDue">Próximo vencimiento (opcional)</label><input id="cDue" type="date"></div>
+        </div><div class="form-actions"><button class="btn" type="submit">Guardar tarjeta/compra</button><button class="btn ghost" type="button" id="cancelCard">Cancelar</button></div></form>
+      </div>
+      <div class="list" id="cardList"></div>
+      <p class="notice">Este apartado es para llevar un control personal de compras y cuotas; no se conecta con tu banco ni consulta saldos reales.</p>
+    </section>
+    <section class="panel" id="ahorro">
+      <div class="section-head"><h2>Mi ahorro</h2></div>
+      <div class="card form-card"><form id="savingsForm"><div class="formgrid">
+        <div class="field"><label for="sGoal">Meta de ahorro ($U)</label><input id="sGoal" type="number" min="0" step="1" required placeholder="Ej. 50000"></div>
+        <div class="field"><label for="sCurrent">Ahorrado hasta ahora ($U)</label><input id="sCurrent" type="number" min="0" step="1" required placeholder="Ej. 12000"></div>
+        <div class="field full"><label for="sName">¿Para qué estás ahorrando?</label><input id="sName" maxlength="80" placeholder="Ej. Viaje, emergencia, vivienda"></div>
+      </div><div class="form-actions"><button class="btn" type="submit">Guardar meta</button></div></form></div>
+      <div class="card"><div class="metric-label" id="savingsName">Mi objetivo</div><div class="metric" id="savingsTotal">$U 0</div><div class="progress"><i id="savingsBar" style="width:0%"></i></div><div class="sub" id="savingsHint">Definí tu meta y cuánto llevás ahorrado.</div></div>
+    </section>
+  </main>
+</div>
+<footer class="foot"><strong>Mi Dinero UY</strong> · Registro manual · Pesos uruguayos</footer>
+<script>
+(()=> {
+const KEY='midinerouy_v1';
+const $=id=>document.getElementById(id);
+const now=new Date();
+const localDate=d=>{const x=new Date(d);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`};
+const monthNow=localDate(now).slice(0,7);
+$('monthPick').value=monthNow;
+$('mDate').value=localDate(now);
+let state={movements:[],budgets:{},cards:[],savings:{goal:0,current:0,name:''}};
+try{const saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved&&typeof saved==='object')state={...state,...saved};}catch(e){}
+let editingId=null;
+const money=n=>new Intl.NumberFormat('es-UY',{style:'currency',currency:'UYU',maximumFractionDigits:0}).format(Number(n)||0);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const selectedMonth=()=> $('monthPick').value||monthNow;
+const monthMoves=()=>state.movements.filter(m=>String(m.date||'').slice(0,7)===selectedMonth());
+function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
+function totals(){const ms=monthMoves();const inc=ms.filter(m=>m.type==='ingreso').reduce((a,m)=>a+Number(m.amount),0);const exp=ms.filter(m=>m.type==='gasto').reduce((a,m)=>a+Number(m.amount),0);return{ms,inc,exp,bal:inc-exp}}
+function moveHTML(m,showDelete=true){return `<div class="item"><div class="item-left"><div class="item-title">${esc(m.description||m.category||'Movimiento')}</div><div class="item-meta">${esc(m.date)} · ${esc(m.category)} · ${esc(m.method||'')}</div></div><div style="text-align:right"><div class="amount ${m.type==='ingreso'?'income':'expense'}">${m.type==='ingreso'?'+':'−'}${money(m.amount)}</div>${showDelete?`<button class="small-action" data-delete-move="${esc(m.id)}">Eliminar</button>`:''}</div></div>`}
+function bindDelete(){document.querySelectorAll('[data-delete-move]').forEach(b=>b.onclick=()=>{if(confirm('¿Eliminar este movimiento?')){state.movements=state.movements.filter(m=>m.id!==b.dataset.deleteMove);save()}})}
+function render(){
+ const t=totals();$('balance').textContent=money(t.bal);$('incomeTotal').textContent=money(t.inc);$('expenseTotal').textContent=money(t.exp);$('available').textContent=money(t.bal);$('countMov').textContent=t.ms.length;
+ const sorted=[...t.ms].sort((a,b)=>b.date.localeCompare(a.date));
+ $('recentList').innerHTML=sorted.slice(0,5).map(m=>moveHTML(m,false)).join('')||'<div class="empty">Todavía no hay movimientos en este mes.</div>';
+ $('movementList').innerHTML=sorted.map(m=>moveHTML(m,true)).join('')||'<div class="empty">Todavía no hay movimientos. Tocá “Nuevo” para registrar el primero.</div>';bindDelete();
+ const cats={};t.ms.filter(m=>m.type==='gasto').forEach(m=>cats[m.category]=(cats[m.category]||0)+Number(m.amount));
+ const catEntries=Object.entries(cats).sort((a,b)=>b[1]-a[1]);
+ $('categorySummary').innerHTML=catEntries.length?catEntries.map(([name,val])=>`<div style="margin:10px 0"><div style="display:flex;justify-content:space-between;gap:10px;font-size:13px"><span>${esc(name)}</span><strong>${money(val)}</strong></div><div class="progress"><i style="width:${Math.min(100,val/Math.max(1,t.exp)*100)}%"></i></div></div>`).join(''):'<div class="empty">Tus gastos por categoría aparecerán acá.</div>';
+ const budget=Number(state.budgets[selectedMonth()]||0),pct=budget?Math.min(100,t.exp/budget*100):0;$('budgetAmount').value=budget||'';$('budgetProgressText').textContent=`${money(t.exp)} / ${money(budget)}`;$('budgetProgressBar').style.width=pct+'%';$('budgetProgressBar').style.background=t.exp>budget&&budget?'#b84d4d':'var(--green)';$('budgetHint').textContent=budget?(t.exp>budget?`Te pasaste ${money(t.exp-budget)} del límite.`:`Te quedan ${money(budget-t.exp)} de presupuesto (${Math.round(pct)}% usado).`):'Definí un límite para empezar a controlar tus gastos.';
+ $('cardList').innerHTML=state.cards.length?state.cards.map(c=>{const per=Number(c.total)/Math.max(1,Number(c.installments));const paid=Math.min(Number(c.paid),Number(c.installments));return `<div class="item"><div class="item-left"><div class="item-title">${esc(c.name)}</div><div class="item-meta">${paid} de ${c.installments} cuotas pagadas · ${c.due?'Próximo vencimiento: '+esc(c.due):'Sin vencimiento registrado'}</div><div class="progress"><i style="width:${paid/Math.max(1,c.installments)*100}%"></i></div><div class="sub">${money(per)} por cuota · Restan ${money(Math.max(0,Number(c.total)-per*paid))}</div></div><button class="small-action" data-delete-card="${esc(c.id)}">Eliminar</button></div>`}).join(''):'<div class="empty">Agregá una tarjeta o compra en cuotas para llevar el control.</div>';
+ document.querySelectorAll('[data-delete-card]').forEach(b=>b.onclick=()=>{if(confirm('¿Eliminar este registro?')){state.cards=state.cards.filter(c=>c.id!==b.dataset.deleteCard);save()}});
+ $('sGoal').value=state.savings.goal||'';$('sCurrent').value=state.savings.current||'';$('sName').value=state.savings.name||'';$('savingsName').textContent=state.savings.name||'Mi objetivo';$('savingsTotal').textContent=`${money(state.savings.current)} de ${money(state.savings.goal)}`;const sp=state.savings.goal?Math.min(100,state.savings.current/state.savings.goal*100):0;$('savingsBar').style.width=sp+'%';$('savingsHint').textContent=state.savings.goal?`Llevás ${Math.round(sp)}% de tu meta. Te faltan ${money(Math.max(0,state.savings.goal-state.savings.current))}.`:'Definí tu meta y cuánto llevás ahorrado.';
+}
+function showTab(id){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+$('monthPick').addEventListener('change',render);
+function openMove(){showTab('movimientos');$('movementFormCard').classList.remove('hidden');$('movementFormTitle').textContent=editingId?'Editar movimiento':'Nuevo movimiento';$('mDescription').focus()}
+$('quickAdd').onclick=()=>{editingId=null;$('movementForm').reset();$('mDate').value=localDate(now);openMove()};
+$('showMovementForm').onclick=()=>{editingId=null;$('movementForm').reset();$('mDate').value=localDate(now);openMove()};
+$('cancelMovement').onclick=()=>{$('movementFormCard').classList.add('hidden');editingId=null};
+$('movementForm').addEventListener('submit',e=>{e.preventDefault();const obj={id:editingId||String(Date.now()),type:$('mType').value,amount:Number($('mAmount').value),date:$('mDate').value,category:$('mCategory').value,description:$('mDescription').value.trim(),method:$('mMethod').value};if(!obj.amount||obj.amount<=0)return alert('Ingresá un importe válido.');if(editingId)state.movements=state.movements.map(m=>m.id===editingId?obj:m);else state.movements.push(obj);editingId=null;$('movementForm').reset();$('mDate').value=localDate(now);$('movementFormCard').classList.add('hidden');save()});
+$('budgetForm').addEventListener('submit',e=>{e.preventDefault();state.budgets[selectedMonth()]=Number($('budgetAmount').value);save();alert('Presupuesto guardado para '+selectedMonth()+'.')});
+$('showCardForm').onclick=()=>$('cardFormCard').classList.toggle('hidden');$('cancelCard').onclick=()=>$('cardFormCard').classList.add('hidden');
+$('cardForm').addEventListener('submit',e=>{e.preventDefault();const total=Number($('cTotal').value),inst=Number($('cInstallments').value),paid=Number($('cPaid').value);if(!total||inst<1||paid>inst||paid<0)return alert('Revisá el importe y las cuotas.');state.cards.push({id:String(Date.now()),name:$('cName').value.trim(),total,installments:inst,paid,due:$('cDue').value});$('cardForm').reset();$('cInstallments').value=1;$('cPaid').value=0;$('cardFormCard').classList.add('hidden');save()});
+$('savingsForm').addEventListener('submit',e=>{e.preventDefault();state.savings={goal:Number($('sGoal').value),current:Number($('sCurrent').value),name:$('sName').value.trim()};save();alert('Meta de ahorro guardada.')});
+$('exportCsv').onclick=()=>{const rows=[['Fecha','Tipo','Importe UYU','Categoría','Descripción','Medio de pago'],...state.movements.map(m=>[m.date,m.type,m.amount,m.category,m.description,m.method])];const csv=rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n');const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='mi-dinero-uy-movimientos.csv';a.click();URL.revokeObjectURL(url)};
+render();
+})();
+</script>
+</body>
+</html>
